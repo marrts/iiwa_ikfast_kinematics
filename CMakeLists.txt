@@ -23,6 +23,21 @@ target_include_directories(iiwa7_ikfast PUBLIC
 add_dependencies(iiwa7_ikfast descartes::descartes_ikfast)
 list (APPEND PACKAGE_LIBRARIES iiwa7_ikfast)
 
+add_library(iiwa7_ikfast_free7 SHARED src/descartes_ikfast_iiwa7_free7.cpp)
+target_link_libraries(iiwa7_ikfast_free7 PUBLIC
+    descartes::descartes_ikfast
+    )
+if(CXX_FEATURE_FOUND EQUAL "-1")
+    target_compile_options(iiwa7_ikfast_free7 PRIVATE -std=c++14)
+else()
+    target_compile_features(iiwa7_ikfast_free7 PRIVATE cxx_std_14)
+endif()
+target_include_directories(iiwa7_ikfast_free7 PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include>")
+add_dependencies(iiwa7_ikfast_free7 descartes::descartes_ikfast)
+list (APPEND PACKAGE_LIBRARIES iiwa7_ikfast_free7)
+
 install(TARGETS ${PACKAGE_LIBRARIES} EXPORT ${PROJECT_NAME}-targets DESTINATION lib)
 install(EXPORT ${PROJECT_NAME}-targets NAMESPACE iiwa_ikfast_kinematics:: DESTINATION lib/cmake/${PROJECT_NAME})
 

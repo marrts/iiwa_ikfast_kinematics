@@ -1,5 +1,5 @@
-#ifndef DESCARTES_IKFAST_IIWA7_H
-#define DESCARTES_IKFAST_IIWA7_H
+#ifndef DESCARTES_IKFAST_IIWA7_FREE7_H
+#define DESCARTES_IKFAST_IIWA7_FREE7_H
 
 #include <descartes_ikfast/ikfast_kinematics.h>
 #include <descartes_ikfast/impl/ikfast_kinematics.hpp>
@@ -24,4 +24,4 @@ using iiwa7KinematicsD = iiwa7Kinematics<double>;
 using iiwa7KinematicsF = iiwa7Kinematics<float>;
 
 }  // namespace iiwa_ikfast_kinematics
-#endif // DESCARTES_IKFAST_IIWA7_H
+#endif // DESCARTES_IKFAST_IIWA7_FREE7_H
