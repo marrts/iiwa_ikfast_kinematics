@@ -12,7 +12,7 @@
 /// See the License for the specific language governing permissions and
 /// limitations under the License.
 ///
-/// ikfast version 0x1000004a generated on 2019-04-04 15:21:31.330214
+/// ikfast version 0x1000004a generated on 2019-04-02 01:57:40.892043
 /// Generated using solver transform6d
 /// To compile with gcc:
 ///     gcc -lstdc++ ik.cpp
@@ -20,7 +20,7 @@
 ///     gcc -fPIC -lstdc++ -DIKFAST_NO_MAIN -DIKFAST_CLIBRARY -shared -Wl,-soname,libik.so -o libik.so ik.cpp
 #define IKFAST_HAS_LIBRARY
 //#include "ikfast.h" // found inside share/openrave-X.Y/python/ikfast.h
-#include <descartes_ikfast/external/ikfast.h> // found inside share/openrave-X.Y/python/ikfast.h
+#include <tesseract_kinematics/ikfast/external/ikfast.h> // found inside share/openrave-X.Y/python/ikfast.h
 using namespace ikfast;
 
 // check if the included ikfast version matches what this file was compiled with

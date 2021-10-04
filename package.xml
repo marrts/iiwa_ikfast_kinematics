@@ -3,10 +3,12 @@
   <name>iiwa_ikfast_kinematics</name>
   <version>0.0.1</version>
   <description>An IKFast solver for the Universal Robots iiwa 7-DOF collaborative robot arm. Uses the descartes_ikfast interface.</description>
+
   <maintainer email="tyler.marr@swri.org">Tyler Marr</maintainer>
+
   <license>Apache 2.0</license>
-  <depend>descartes_ikfast</depend>
-  <export>
-    <build_type>cmake</build_type>
-  </export>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>tesseract_kinematics</depend>
+  <depend>libconsole-bridge-dev</depend>
 </package>
