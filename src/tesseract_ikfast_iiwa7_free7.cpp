@@ -24,7 +24,7 @@ namespace iiwa_ikfast_kinematics
 {
 iiwa7Kinematics::iiwa7Kinematics(
     const tesseract_kinematics::ForwardKinematics::ConstPtr& fwd_kin,
-    const std::vector<double> free_joint_values)
+    const std::vector<std::vector<double>> free_joint_combos)
   : IKFastInvKin()
 {
   init(fwd_kin->getName(),
@@ -35,7 +35,7 @@ iiwa7Kinematics::iiwa7Kinematics(
        fwd_kin->getActiveLinkNames(),
        fwd_kin->getLimits(),
        fwd_kin->getRedundancyCapableJointIndices(),
-       free_joint_values);
+       free_joint_combos);
 }
 
 }  // namespace iiwa_ikfast_kinematics

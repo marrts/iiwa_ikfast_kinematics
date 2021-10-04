@@ -13,7 +13,7 @@ class iiwa7Kinematics : public tesseract_kinematics::IKFastInvKin
 {
 public:
   iiwa7Kinematics(const tesseract_kinematics::ForwardKinematics::ConstPtr& fwd_kin,
-                  const std::vector<double> free_joint_values = {0.0});
+                  const std::vector<std::vector<double>> free_joint_combos = {{0.0}});
 };
 
 }  // namespace iiwa_ikfast_kinematics
