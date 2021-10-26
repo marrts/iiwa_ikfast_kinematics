@@ -10,5 +10,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <depend>tesseract_kinematics</depend>
+  <depend>tesseract_srdf</depend>
+  <depend>tesseract_scene_graph</depend>
   <depend>libconsole-bridge-dev</depend>
 </package>

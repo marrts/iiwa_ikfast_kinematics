@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.5.0)
 project(iiwa_ikfast_kinematics)
 
 find_package(catkin REQUIRED)
+find_package(tesseract_scene_graph REQUIRED)
 find_package(tesseract_kinematics REQUIRED)
+find_package(tesseract_srdf REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(console_bridge REQUIRED)
 find_package(LAPACK REQUIRED) # Requried for ikfast
@@ -17,6 +19,7 @@ catkin_package(
   DEPENDS
     EIGEN3
     tesseract_kinematics
+    tesseract_srdf
     console_bridge
     LAPACK
 )
@@ -37,6 +40,10 @@ target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
     ${LAPACK_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIRS})
 
+add_library(${PROJECT_NAME}_factory src/tesseract_ikfast_iiwa7_factory.cpp)
+target_link_libraries(${PROJECT_NAME}_factory PUBLIC ${PROJECT_NAME} tesseract::tesseract_scene_graph
+                                                     console_bridge::console_bridge)
+
 add_library(${PROJECT_NAME}_free7 src/tesseract_ikfast_iiwa7_free7.cpp)
 target_link_libraries(${PROJECT_NAME}_free7 PUBLIC tesseract::tesseract_kinematics_ikfast console_bridge ${LAPACK_LIBRARIES} ${catkin_LIBRARIES})
 target_compile_definitions(${PROJECT_NAME}_free7 PUBLIC -DIKFAST_NO_MAIN -DIKFAST_CLIBRARY -DIKFAST_HAS_LIBRARY)
@@ -49,11 +56,15 @@ target_include_directories(${PROJECT_NAME}_free7 SYSTEM PUBLIC
     ${LAPACK_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIRS})
 
+add_library(${PROJECT_NAME}_free7_factory src/tesseract_ikfast_iiwa7_free7_factory.cpp)
+target_link_libraries(${PROJECT_NAME}_free7_factory PUBLIC ${PROJECT_NAME}_free7 tesseract::tesseract_scene_graph
+                                                     console_bridge::console_bridge)
+
 #############
 ## Install ##
 #############
 
-install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_free7
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_factory ${PROJECT_NAME}_free7
  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
